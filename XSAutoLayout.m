@@ -6,7 +6,6 @@
 //  Copyright (c) 2014年 xisi. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "XSAutoLayout.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
@@ -16,7 +15,6 @@ NSLayoutConstraint* lay(XSAutoLayout *lay1, XSAutoLayout *lay2, CGFloat multipli
     SEL sel = sel_registerName("equal:multiplier:constant:");
     return ((NSLayoutConstraint* (*)(XSAutoLayout*, SEL, XSAutoLayout*, CGFloat, CGFloat))objc_msgSend)(lay1, sel, lay2, multiplier, constant);
 }
-
 
 
 #pragma mark -  XSAutoLayout
@@ -50,7 +48,7 @@ NSLayoutConstraint* lay(XSAutoLayout *lay1, XSAutoLayout *lay2, CGFloat multipli
     Class cls = [UIView class];
     for (int i = 0; i < 12; i++) {
         SEL sel = sel_registerName(s[i]);
-        IMP imp = imp_implementationWithBlock(^XSAutoLayout *(UIView *view) {
+        IMP imp = imp_implementationWithBlock(^XSAutoLayout* (UIView *view) {
             XSAutoLayout *autoLayout = [XSAutoLayout new];
             autoLayout.view = view;
             autoLayout.attr = (i + 1) % 12;

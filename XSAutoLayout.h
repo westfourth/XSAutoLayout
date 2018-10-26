@@ -6,6 +6,7 @@
 //  Copyright (c) 2014年 xisi. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 @class XSAutoLayout;
 
 
@@ -21,26 +22,28 @@
 NSLayoutConstraint* lay(XSAutoLayout *lay1, XSAutoLayout *lay2, CGFloat multiplier, CGFloat constant);
 
 
+@protocol XSAutoLayout
+
+@property (readonly, nonatomic) XSAutoLayout *left;
+@property (readonly, nonatomic) XSAutoLayout *right;
+@property (readonly, nonatomic) XSAutoLayout *top;
+@property (readonly, nonatomic) XSAutoLayout *bottom;
+@property (readonly, nonatomic) XSAutoLayout *leading;
+@property (readonly, nonatomic) XSAutoLayout *trailing;
+
+@property (readonly, nonatomic) XSAutoLayout *width;
+@property (readonly, nonatomic) XSAutoLayout *height;
+@property (readonly, nonatomic) XSAutoLayout *centerX;
+@property (readonly, nonatomic) XSAutoLayout *centerY;
+@property (readonly, nonatomic) XSAutoLayout *baseline;
+@property (readonly, nonatomic) XSAutoLayout *notAnAttribute;
+
+@end
+
 
 @interface XSAutoLayout: NSObject
 @end
 
 
-
-@interface UIView (XSAutoLayout)
-
-@property (nonatomic, readonly) XSAutoLayout *left;
-@property (nonatomic, readonly) XSAutoLayout *right;
-@property (nonatomic, readonly) XSAutoLayout *top;
-@property (nonatomic, readonly) XSAutoLayout *bottom;
-@property (nonatomic, readonly) XSAutoLayout *leading;
-@property (nonatomic, readonly) XSAutoLayout *trailing;
-
-@property (nonatomic, readonly) XSAutoLayout *width;
-@property (nonatomic, readonly) XSAutoLayout *height;
-@property (nonatomic, readonly) XSAutoLayout *centerX;
-@property (nonatomic, readonly) XSAutoLayout *centerY;
-@property (nonatomic, readonly) XSAutoLayout *baseline;
-@property (nonatomic, readonly) XSAutoLayout *notAnAttribute;
-
+@interface UIView (XSAutoLayout) <XSAutoLayout>
 @end
